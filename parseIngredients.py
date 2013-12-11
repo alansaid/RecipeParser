@@ -23,7 +23,7 @@ def main(args):
 
 	for line in recipeFile:
 		recipeData = line.split("\t")
-		recipeURL = recipeData[1] 
+		recipeURL = recipeData[8].rstrip('\n') 
 		recipeID = recipeData[0]
 		recipes[recipeURL] = recipeID
 	recipeFile.close()
@@ -44,7 +44,7 @@ def main(args):
 			else:
 				ingredient = len(ings) + 1
 				ings[tmpID] = ingredient
-			output =  rId + "\t" + str(ingredient) + "\t" + siteID + "\t" + name + "\t" + amount + "\n"
+			output =  str(ingredient) + "\t" + rId + "\t" + siteID + "\t" + name + "\t" + amount + "\n"
 			
 			parsedIngredientsFile.write(output)
 		except ValueError:

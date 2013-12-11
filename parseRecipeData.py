@@ -64,8 +64,9 @@ def main(args):
 				elif "¾" in no:
 					no = no.strip("¾").strip() + ".75"
 				cookingTimeInMinutes = int(float(no) * int(mins))
+			output = str(recipeID) + "\t" + title + "\t" + servings + "\t" + cookingTime + "\t" + str(cookingTimeInMinutes) + "\t" + myUserID + "\t" + userID + "\t" + username + "\t" + url + "\n"
 
-			output = str(recipeID) + "\t" + url + "\t" + title + "\t" + servings + "\t" + username + "\t" + userID + "\t" + myUserID + "\t" + cookingTime + "\t" + str(cookingTimeInMinutes) + "\n"
+			#output = str(recipeID) + "\t" + url + "\t" + title + "\t" + servings + "\t" + username + "\t" + userID + "\t" + myUserID + "\t" + cookingTime + "\t" + str(cookingTimeInMinutes) + "\n"
 			recipeFile.write(output)
 #			if lines == 200:
 #				sys.exit()
