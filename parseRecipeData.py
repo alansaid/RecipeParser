@@ -27,12 +27,13 @@ def main(args):
 	recipeFile = open("parsed/parsedRecipes.tsv", 'w')
 	lines = 0
 	file = open("recipes.tsv", "r")
+	recipeID = 0
 	for line in file:
 		try:
 			line = line.rstrip('\n')
 			if "\t404" in line:
 				continue
-			lines = lines + 1
+			recipeID = recipeID + 1
 			[url, title, servings, username, userID, cookingTime] = line.split("\t")
 			#print "url: " + url
 			#print "title: " + title
@@ -64,7 +65,7 @@ def main(args):
 					no = no.strip("¾").strip() + ".75"
 				cookingTimeInMinutes = int(float(no) * int(mins))
 
-			output = url + "\t" + title + "\t" + servings + "\t" + username + "\t" + userID + "\t" + myUserID + "\t" + cookingTime + "\t" + str(cookingTimeInMinutes) + "\n"
+			output = str(recipeID) + "\t" + url + "\t" + title + "\t" + servings + "\t" + username + "\t" + userID + "\t" + myUserID + "\t" + cookingTime + "\t" + str(cookingTimeInMinutes) + "\n"
 			recipeFile.write(output)
 #			if lines == 200:
 #				sys.exit()
