@@ -47,6 +47,7 @@ def main(args):
 			if userID in userIDs:
 				userid = userIDs.get(userID)
 			else:
+				print line
 				continue
 			ratingDate = str(datetime.strptime(rated, '%b %d, %Y')).split(' ')[0]
 

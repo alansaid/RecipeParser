@@ -11,6 +11,7 @@ Usage:
 import sys
 import glob
 import traceback
+from datetime import datetime
 
 def main(args):
 	authors = {} 
@@ -28,6 +29,15 @@ def main(args):
 
 			home = parseLocation(hometown)
 			living = parseLocation(livingin)
+			if len(joined) > 0 and "." in joined:
+				joined = str(datetime.strptime(joined, "%b. %Y"))
+			elif len(joined) > 0 and "." not in joined:
+				joined = str(datetime.strptime(joined, "%b %Y"))
+
+			timestamp = int(timestamp)/1000
+			
+			timestamp = datetime.fromtimestamp(int(timestamp)).strftime('%Y-%m-%d %H:%M:%S')
+
 			if len(cookinginterest) > 0:
 				interests = parseInterests(user, cookinginterest)
 				interestFile.write(interests)
@@ -81,7 +91,7 @@ def parseLocation(location):
 		country = home[num-1]
 		parsedLocation = city + "\t" + state + "\t" + country
 	else:
-		parsedLocation = ""	
+		parsedLocation = "\t\t"	
 	return parsedLocation
 
 def usage():
