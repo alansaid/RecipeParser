@@ -20,7 +20,7 @@ def main(args):
 	hobbiesFile = open("parsed/hobbies.tsv",'w')
 	user = 0
 
-	file = open("allProfiles.tsv", "r")
+	file = open("input/allProfiles.tsv", "r")
 	for line in file:
 		try:
 			line = line.rstrip('\n')

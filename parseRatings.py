@@ -33,7 +33,7 @@ def main(args):
 	recipeFile.close()
 
 	ratingFile = open("parsed/parsedRatings.tsv", 'w')
-	file = open("all-user-recipe.tsv", "r")
+	file = open("input/all-user-recipe.tsv", "r")
 	rating = 0
 	for line in file:
 		try:
@@ -50,8 +50,9 @@ def main(args):
 				print line
 				continue
 			ratingDate = str(datetime.strptime(rated, '%b %d, %Y')).split(' ')[0]
+			timestamp = int(timestamp)/1000
 
-			output = userID + "\t" + recipeID + "\t" + user_rating + "\t" + avg_rating + "\t" + ratingDate + "\t" +  timestamp + "\n"
+			output = userID + "\t" + recipeID + "\t" + user_rating + "\t" + avg_rating + "\t" + ratingDate + "\t" +  str(timestamp) + "\n"
 			#print output
 			ratingFile.write(output)
 			#if rating == 200:

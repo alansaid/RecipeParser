@@ -26,7 +26,7 @@ def main(args):
 	
 	recipeFile = open("parsed/parsedRecipes.tsv", 'w')
 	lines = 0
-	file = open("recipes.tsv", "r")
+	file = open("input/recipes.tsv", "r")
 	recipeID = 0
 	for line in file:
 		try:

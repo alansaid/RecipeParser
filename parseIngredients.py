@@ -16,7 +16,7 @@ def main(args):
 	authors = {} 
 	parsedIngredientsFile = open("parsed/parsedIngredients.tsv", 'w')
 	recipeFile = open("parsed/parsedRecipes.tsv", 'r')
-	ingredientsFile = open("ingredients.tsv", 'r') 
+	ingredientsFile = open("input/ingredients.tsv", 'r') 
 	ingredient = 0
 
 	recipes = {}
