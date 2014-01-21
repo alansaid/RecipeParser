@@ -28,6 +28,7 @@ def main(args):
 		recipes[recipeURL] = recipeID
 	recipeFile.close()
 
+	parseIngredientsFile.write(ingID +"\t" + recID + "\t" + siteIID + "\t" + name + "\t" + amount)
 	ings = {}
 	for line in ingredientsFile:
 		try:
