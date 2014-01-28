@@ -52,7 +52,7 @@ def main(args):
 			ratingDate = str(datetime.strptime(rated, '%b %d, %Y')).split(' ')[0]
 			timestamp = int(timestamp)/1000
 
-			output = userID + "\t" + recipeID + "\t" + user_rating + "\t" + avg_rating + "\t" + ratingDate + "\t" +  str(timestamp) + "\n"
+			output = userid + "\t" + recipeID + "\t" + user_rating + "\t" + avg_rating + "\t" + ratingDate + "\t" +  str(timestamp) + "\n"
 			#print output
 			ratingFile.write(output)
 			#if rating == 200:
