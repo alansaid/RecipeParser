@@ -25,8 +25,8 @@ user_ratings <- merge(ususers, ratings, by=c("uid"))
 # never do this, 20+gb RAM
 #all_merged <- merge(recipes_ing, user_ratings, by.x="recID", by.y="recid")
 
-N=10
-#cat("State\tTown\trecipeID\tingrID")
+N=100
+cat("State\tTown\tingrID\tcount")
 
 print("Merging per state")
 states <- unique(ususers$livingstate)
@@ -52,7 +52,7 @@ for (state in states){
 		counts <- town.state.all.agg$recID[town.state.sorted.indices][1:N]
 		ingredients <- town.state.all.agg$s[town.state.sorted.indices][1:N]
 		for (i in town.state.sorted.indices[1:N]){
-		cat(state, town, town.state.all.agg$recID[i], town.state.all.agg$s[i], file="townCounts.tsv", append=TRUE, '\n', sep="\t")
+			cat(state, town, town.state.all.agg$s[i], town.state.all.agg$recID[i], file="townCounts.tsv", append=TRUE, '\n', sep="\t")
 		} 
 #		break
 	}
