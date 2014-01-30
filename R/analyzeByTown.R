@@ -1,5 +1,5 @@
 print("Loading...")
-#users <- read.table('../parsed/100users.tsv', header=TRUE, sep="\t", quote="", comment.char="")
+#users <- read.table('../parsed/1kusers.tsv', header=TRUE, sep="\t", quote="", comment.char="")
 users <- read.table('../parsed/parsedProfiles.tsv', header=TRUE, sep="\t", quote="", comment.char="")
 ratings <- read.table('../parsed/parsedRatings.tsv', header=TRUE, sep="\t", quote="", comment.char="")
 recipes <- read.table('../parsed/parsedRecipes.tsv', header=TRUE, sep="\t", quote="", comment.char="")
@@ -25,8 +25,8 @@ user_ratings <- merge(ususers, ratings, by=c("uid"))
 # never do this, 20+gb RAM
 #all_merged <- merge(recipes_ing, user_ratings, by.x="recID", by.y="recid")
 
-N=100
-cat("State\tTown\tingrID\trecipes\tcount", file="townCounts.tsv", append=TRUE)
+N=20
+cat("State\tTown\tingrID\trecipes\treccount\tratings\n", file="townCounts.tsv")
 
 print("Merging per state")
 states <- unique(ususers$livingstate)
@@ -44,6 +44,7 @@ for (state in states){
 			next
 		}
 		user_ratings.town <- user_ratings.state[user_ratings.state$livingtown==town,]
+		num.ratings <- nrow(user_ratings.town)
 		#merge ratings with ingredients, by town in state
 		town.full <- merge(recipes_ing, user_ratings.town, by.x="recID", by.y="recid")
 		town.state.df <- data.frame(s=town.full$siteID, recID=town.full$recID)
@@ -56,7 +57,7 @@ for (state in states){
 			if(is.na(town.state.all.agg$recID[i]) || is.na(town.state.all.agg$s[i])){
 				next
 			}
-			cat(state, town, town.state.all.agg$s[i], town.state.all.agg$recID[i], length(town.state.recipes), file="townCounts.tsv", append=TRUE, '\n', sep="\t")
+			cat(state, town, town.state.all.agg$s[i], town.state.all.agg$recID[i], length(town.state.recipes), num.ratings, file="townCounts.tsv", append=TRUE, '\n', sep="\t")
 		} 
 	}
 }
